@@ -1,0 +1,87 @@
+[웹퍼블리셔가 알려주는 실무 웹사이트 따라 만들기]
+
+* 디비컷: 웹 에이전시들이 최근 구축한 사이트를 오픈한 것.
+- 강의는 '함솔홈데코'를 참고했음
+
+* Full page Screen Capture
+* Image Downloader
+
+
+
+
+＃Header 영역 제작-----------------------
+
+* <html lang="ko">
+
+* nav는 이름 있어야 함(h태그를 이용하여). 안 보이더라도!
+- display: none; 으로 하면 안 됨. 화면 낭독기 프로그램에 인식 안 됨.
+- position: absolute: left -5000px; 이런 식으로 날리는 게 나음.
+- (응용) 아예 숨기는 태그의 class명을 hide로 하고 css파일에 
+.hide{position: absolute; left:-5000px;}	이런 식으로 응용하자
+
+<<홈페이지 로고>>
+* 클릭할 곳은 가로는 딱 맞게, 세로는 넉넉하게 컬러는 투명으로	//해당 강의는 split 이미지를 써서 a는 딱 맞게 설정해야 함. 
+header {height: 81px; text-align:center;}
+header h1{position: absolute; left: 50px; top: 0; padding: 14px 0 0;}
+header h1 a {display: block; width: 110px; width:81px; color: transparent; background: url(. ./images/sp_com.png) no repeat -300px 0;}
+
+<<대메뉴>>
+*nav가 ul li로 되어 있음
+
+<<관련 메뉴>>
+* 중간에 바	//100% 올리는 게 아니라 딱 가운데 정렬 해야 하니까 본인의 -50% 내려야 함
+header .spot li:after {content:""; position: absolute; left:0; top: 50%; width:1px; height: 7px; background:#ccc; transform: translateY(-50%);}	
+
+*첫번째 것에는 없음
+header .spot li:first-child:after {display:none;}
+
+* position: 
+relative: 현재 위치에서 상대적인 offset 속성을 줄 수 있음
+absolute: 부모 중에 static이 아닌 요소의 위치를 기준으로 상대적인 offset 속성을 줄 수 있음
+
+
+
+
+＃Visual 영역 제작----------------
+* section으로 나눠줌
+
+* 컨트롤 하는 영역 먼저 만들어 놓는 것이 좋다
+컨텐츠 넣는 것은 가장 마지막으로
+
+*(컨트롤 영역)
+ 이전다음 -> 재생 기능 or 재생 기능 ->이전다음 으로 하는 것이 좋음
+마지막은 콘텐츠 선택 영역
+
+* 콘텐츠 선택 영역의 이름은 콘텐츠 내용 부분으로 정하는 게 좋음(EX- 한솔홈데코 비전, xxx 신상품 등)
+
+* .con에 있는 모든 div에 대해 속성 넣기
+.com > div {height: 640px;}
+
+* inline 요소는 가로세로가 들어가지 않음. block 요소로 변경해야 함
+
+* 위에서 가운데로 떨어지게 정렬(절대적인 영역) //이전다음 버튼 묶어서 같이
+.visual .prev,
+.visual .next {display: block; position: absolute; top:50%; transform: translateY(-50%); width: 25px; height: 47px; background: url(...) no-repeat; color: transparent;}
+
+.visual .prev {left: 82px; background-position: -128px -60px;}
+.visual .next {right: 82px; background-position: -158px -60px;}
+
+* inline-block의 여백을 없애는 방법
+- 한 줄로 처리
+-  font-size: 0으로 처리
+
+* 폰트 때문에 줄 바꿈 처리된다면 overflow: hidden;
+
+* 다중 클래스: class="play on"
+
+* 투명도 속성: opacity
+
+* 확장성 있게 작업해야 함!!
+
+* 텍스트는 padding으로 하기 보다는 가운데 정렬 같은 것으로 처리하는 게 좋음.
+
+* 반응형으로 할 떄 꺠지는 것을 방지하여 min-width 설정하여 스크롤으로 조정하게 만듦
+
+* 웹페이지에서 원하는 사진이 원본보다 클 때
+ background-size: cover;
+
